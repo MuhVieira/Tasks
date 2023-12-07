@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>TaskManager</title>
+</head>
+
+<body>
+    <div class="container">
+        <input class="input-task" placeholder="O que tenho que fazer...">
+        <button class="button-add-task">Adicionar</button>
+
+        <ul class="list-tasks">
+            <li class="task">
+              
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
+
+JS
+
+const button = document.querySelector('.button-add-task')
+const input = document.querySelector('.input-task')
+const listaCompleta = document.querySelector('.list-tasks')
+
+let minhaListaDeItens = []
+
+
+
+function addNovaTask(){
+    minhaListaDeItens.push({
+        task: input.value,
+        concluida: false
+    })
+    input.value = ''
+
+    mostrarTasks()
+}
+
+function mostrarTasks(){
+
+    let novaLi = ''
+
+    //['comprar café','projeto do  rafa']
+    
+    minhaListaDeItens.forEach((item, posicao) => {
+        novaLi = novaLi + `
+    <li class="task">
+        <img src="img/check-icone-3.png" alt="check do site">
+        <p>${item.task}</p>
+        <img src="img/trash png.png" alt="task-pro-lixo" onclick="deletarItem(${posicao})">
+    </li>
+    }
+    `
+    })
+
+    listaCompleta.innerHTML = novaLi
+}
+
+function concluirTask(){
+
+}
+
+function deletarItem(posicao){
+    minhsListaDeItens.splice(posicao, 1)
+
+    mostrarTasks()
+}
+
+
+button.addEventListener('click', addNovaTask)
